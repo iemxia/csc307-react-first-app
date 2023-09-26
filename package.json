@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "csc307-react-app",
+=======
+  "name": "csc307-react-first-app",
+>>>>>>> 721928d7ecd100a863dc2716505005a612327ad0
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
