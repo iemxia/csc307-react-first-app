@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import Table from "./Table";
   
-
 function MyApp() {
   const [characters, setCharacters] = useState([
     {
@@ -35,5 +34,7 @@ function MyApp() {
               removeCharacter = {removeOneCharacter}/>
     </div>
   );
-}
+  }
+    
+
 export default MyApp;
