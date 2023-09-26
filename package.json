@@ -1,18 +1,23 @@
 {
-<<<<<<< HEAD
-  "name": "csc307-react-app",
-=======
   "name": "csc307-react-first-app",
->>>>>>> 721928d7ecd100a863dc2716505005a612327ad0
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "cd react-frontend-old && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
+    
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4",
     "create-react-app": "^5.0.1"
   }
 }
