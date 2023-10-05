@@ -89,7 +89,7 @@ const newUser =
     "name": "Cindy"
  };
 
- app.post('/users', (req, res) => {
+app.post('/users', (req, res) => {
     const userToAdd = req.body;
     addUser(userToAdd);
     res.send();
@@ -101,5 +101,24 @@ fetch("http://localhost:8000/users", {
         "Content-Type": "application/json",
     },
     body: JSON.stringify(newUser),
+});
+
+const delUser = (id) => {
+    let result = findUserById(id);
+    if (result) {
+        const num = users['users_list'].indexOf(result);
+        users['users_list'].splice(num, 1);
+    }
+    return result;
+}
+
+app.delete('/users/:id', (req, res) => {
+    const id = req.params['id']; //or req.params.id
+    let result = delUser(id);
+    if (result === undefined) {
+        res.status(404).send('Resource not found.');
+    } else {
+        res.send(result);
+    }
 });
 
