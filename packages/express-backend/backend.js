@@ -77,3 +77,29 @@ app.get('/users', (req, res) => {
     res.send(users);
 });
 
+const addUser = (user) => {
+    users['users_list'].push(user);
+    return user;
+}
+
+const newUser = 
+{
+    "id": "qwe123",
+    "job": "Zookeeper",
+    "name": "Cindy"
+ };
+
+ app.post('/users', (req, res) => {
+    const userToAdd = req.body;
+    addUser(userToAdd);
+    res.send();
+});
+
+fetch("http://localhost:8000/users", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newUser),
+});
+
