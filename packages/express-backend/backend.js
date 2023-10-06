@@ -1,8 +1,9 @@
 import express from "express";
+import cors from "cors";
  
 const app = express();
 const port = 8000;
-
+app.use(cors());
 app.use(express.json());
 app.get('/', (req, res) => {
     res.send('Hello World!');
@@ -47,18 +48,6 @@ const findUserByName = (name) => {
         .filter( (user) => user['name'] === name); 
 }
 
-// app.get('/users', (req, res) => {
-//     const name = req.query.name;
-//     if (name != undefined){
-//         let result = findUserByName(name);
-//         result = {users_list: result};
-//         res.send(result);
-//     }
-//     else{
-//         res.send(users);
-//     }
-// });
-
 const findUserById = (id) =>
     users['users_list']
         .find( (user) => user['id'] === id);
@@ -72,10 +61,6 @@ app.get('/users/:id', (req, res) => {
         res.send(result);
     }
 });
-
-// app.get('/users', (req, res) => {
-//     res.send(users);
-// });
 
 const addUser = (user) => {
     users['users_list'].push(user);
