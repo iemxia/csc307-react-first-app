@@ -14,7 +14,19 @@ function MyApp() {
 
     function updateList(person) {
         postUser(person)
-        .then(() => setCharacters([...characters, person]))
+        .then((response) => {
+            if (response.status === 201) {
+                return response.json();
+            } else {
+                console.log('User insertion failed with status code:',response.status);
+
+            }
+        })
+        .then((newUser) => {
+            if (newUser) {
+                setCharacters([...characters, newUser]);
+            }
+        })
         .catch((error) => {
             console.log(error);
         })

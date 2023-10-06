@@ -74,10 +74,22 @@ const newUser =
     "name": "Cindy"
  };
 
+ const generateRandomID = () => {
+    const randNum = Math.random().toString(36).substring(2, 10);
+    return randNum;
+}
 app.post('/users', (req, res) => {
     const userToAdd = req.body;
-    addUser(userToAdd);
-    res.send();
+    const newUserID = generateRandomID();
+    userToAdd.id = newUserID;
+    const newUser = addUser(userToAdd);
+    if (newUser) {
+        res.status(201).json(newUser);   // is this how you return updated representation of the object?
+                                        // how to test return newly created object from POST?
+    }
+    else {
+        res.status(500).send('User could not be added.');
+    }
 });
 
 fetch("http://localhost:8000/users", {
