@@ -5,11 +5,24 @@ import Form from './Form';
 function MyApp() {
     const [characters, setCharacters] = useState([]);
 
-    function removeOneCharacter(index) {
-    const updated = characters.filter((character, i) => {
-        return i !== index
+    function removeOneCharacter(id) {
+        fetch(`http://localhost:8000/users/${id}`, {
+            method: "DELETE",
+        })
+        .then((response) => {
+            if (response.status === 204) {
+                const updated = characters.filter((character) => character.id !== id);
+                setCharacters(updated);
+            } else if (response.status === 404) {
+                console.log('User not found');
+            } else {
+                console.log('Failed to delete with status code: ', response.status);
+            }
+        })
+        .catch((error) => {
+            console.log('Error while deleting: ', error);
         });
-        setCharacters(updated);
+   
     }
 
     function updateList(person) {
@@ -29,7 +42,7 @@ function MyApp() {
         })
         .catch((error) => {
             console.log(error);
-        })
+        });
     }
 
     function fetchUsers(){
